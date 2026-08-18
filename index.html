@@ -1,97 +1,118 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>coder-app-name</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+
+    <!-- primary seo -->
+    <title>فینولو | نرم‌افزار مدیریت پروژه فارسی — کانبان، گانت و گزارش زنده</title>
+    <meta
+      name="description"
+      content="فینولو؛ ابزار مدیریت پروژه برای تیم‌های ایرانی با تقویم شمسی، تخته کانبان، گانت، اتوماسیون و گزارش‌های زنده. رایگان شروع کنید — بدون کارت بانکی."
     />
-    <style>
-      /* 内联样式确保主题色立即生效，避免闪烁 */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-      }
-      html.light,
-      html.light body {
-        background-color: #ffffff !important;
-        color: #000000;
-      }
-      html.dark,
-      html.dark body {
-        background-color: #1a1a1a !important;
-        color: #ffffff;
-      }
-    </style>
-    <script>
-      // 在 React 加载前立即设置主题，避免闪烁
-      (function () {
-        const isInIframe = window.self !== window.top;
+    <meta
+      name="keywords"
+      content="مدیریت پروژه, نرم افزار مدیریت پروژه, کانبان, گانت چارت, مدیریت تسک, تیم, فینولو, project management, kanban, gantt"
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="تیم فینولو" />
+    <meta name="theme-color" content="#F4471F" />
+    <link rel="canonical" href="https://finolo.ir/" />
+    <link rel="alternate" hreflang="fa" href="https://finolo.ir/" />
+    <link rel="alternate" hreflang="x-default" href="https://finolo.ir/" />
 
-        function applyThemeToDOM(theme) {
-          document.documentElement.classList.remove("light", "dark");
-          document.documentElement.classList.add(theme);
-          document.documentElement.setAttribute("data-theme", theme);
-        }
+    <!-- open graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="فینولو | Finolo" />
+    <meta property="og:locale" content="fa_IR" />
+    <meta property="og:url" content="https://finolo.ir/" />
+    <meta property="og:title" content="فینولو | مدیریت پروژه فارسی — کانبان، گانت و گزارش زنده" />
+    <meta
+      property="og:description"
+      content="تخته کانبان، گانت، اتوماسیون و گزارش‌های زنده برای تیم‌های ایرانی — با تقویم شمسی. رایگان شروع کنید."
+    />
+    <meta property="og:image" content="https://image.qwenlm.ai/generated-images/399af4df-f292-4c56-8f6b-9fbb9fa526b9/_result.png" />
+    <meta property="og:image:alt" content="فینولو — ابزار مدیریت پروژه مینیمال برای تیم‌های ایرانی" />
 
-        if (isInIframe) {
-          // 监听父窗口主动推送的主题消息
-          window.addEventListener("message", function (event) {
-            if (event.data && typeof event.data.theme === "string") {
-              const theme = event.data.theme;
-              if (theme === "light" || theme === "dark") {
-                applyThemeToDOM(theme);
-              }
-            }
-          });
-        } else {
-          // 非 iframe 环境，使用默认 light 主题
-          applyThemeToDOM("light");
-        }
-      })();
-    </script>
-      <script>
-      (function () {
-        if (window.self === window.top) return;
-        var reported = {};
-        window.addEventListener("error", function (event) {
-          // 资源加载失败的 error 事件没有 message，此处仅上报 JS 运行时错误
-          if (!event || !event.message) return;
-          var key =
-            event.message + "|" + (event.filename || "") + "|" + (event.lineno || 0);
-          if (reported[key]) return; // 相同错误只上报一次，避免渲染循环刷屏
-          reported[key] = true;
-          try {
-            window.parent.postMessage(
-              {
-                type: "sandbox-runtime-error",
-                payload: {
-                  message: String(event.message).slice(0, 500),
-                  filename: event.filename || "",
-                  lineno: event.lineno || 0,
-                  colno: event.colno || 0,
-                  stack:
-                    event.error && event.error.stack
-                      ? String(event.error.stack).slice(0, 2000)
-                      : ""
-                }
-              },
-              "*"
-            );
-          } catch (e) {
-            /* 上报失败不影响页面运行 */
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="فینولو | مدیریت پروژه فارسی" />
+    <meta name="twitter:description" content="کانبان، گانت، اتوماسیون و گزارش زنده با تقویم شمسی — برای تیم‌های ایرانی." />
+    <meta name="twitter:image" content="https://image.qwenlm.ai/generated-images/399af4df-f292-4c56-8f6b-9fbb9fa526b9/_result.png" />
+
+    <!-- icons -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F4471F'/%3E%3Crect x='14' y='16' width='10' height='32' rx='4' fill='%23F5F2EB'/%3E%3Crect x='30' y='16' width='10' height='22' rx='4' fill='%23FFC24B'/%3E%3Crect x='46' y='16' width='6' height='14' rx='3' fill='%23F5F2EB' opacity='.85'/%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+
+    <!-- fonts: Yekan Bakh (display + body) with Vazirmatn fallback -->
+    <link rel="preconnect" href="https://v1.fontapi.ir" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://v1.fontapi.ir/css/YekanBakh" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://finolo.ir/#org",
+            "name": "فینولو | Finolo",
+            "url": "https://finolo.ir/",
+            "logo": { "@type": "ImageObject", "url": "https://image.qwenlm.ai/generated-images/399af4df-f292-4c56-8f6b-9fbb9fa526b9/_result.png" },
+            "sameAs": ["https://t.me/finolo", "https://instagram.com/finolo", "https://linkedin.com/company/finolo"]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://finolo.ir/#website",
+            "url": "https://finolo.ir/",
+            "name": "فینولو",
+            "inLanguage": "fa",
+            "publisher": { "@id": "https://finolo.ir/#org" }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://finolo.ir/#app",
+            "name": "فینولو",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web, iOS, Android",
+            "inLanguage": "fa",
+            "url": "https://finolo.ir/",
+            "description": "ابزار مدیریت پروژه فارسی با تخته کانبان، گانت، اتوماسیون و گزارش‌های زنده و تقویم شمسی.",
+            "offers": [
+              { "@type": "Offer", "price": "0", "priceCurrency": "IRR", "description": "پلن رایگان — برای همیشه" },
+              { "@type": "Offer", "price": "840000", "priceCurrency": "IRR", "description": "پلن حرفه‌ای ماهانه" },
+              { "@type": "Offer", "price": "1860000", "priceCurrency": "IRR", "description": "پلن سازمانی ماهانه" }
+            ],
+            "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "2400" },
+            "featureList": "تخته کانبان, گانت و تایم‌لاین, اتوماسیون, گزارش زنده, نقش‌ها و دسترسی, تقویم شمسی, اتصال‌ها و API"
           }
-        });
-      })();
+        ]
+      }
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="root">
+      <noscript>
+        <div dir="rtl" style="font-family: Tahoma, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 2">
+          <h1>فینولو — نرم‌افزار مدیریت پروژه فارسی</h1>
+          <p>
+            فینولو ابزار مدیریت پروژه برای تیم‌های ایرانی است: تخته کانبان، گانت و تایم‌لاین، اتوماسیون، گزارش‌های زنده،
+            نقش‌ها و دسترسی سطح‌بندی‌شده و تقویم کاملاً شمسی.
+          </p>
+          <p><a href="https://finolo.ir/">finolo.ir</a></p>
+        </div>
+      </noscript>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

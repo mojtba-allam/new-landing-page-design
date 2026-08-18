@@ -1,1 +1,564 @@
 @import "tailwindcss";
+
+@theme {
+  --color-paper: #f5f2eb;
+  --color-paper-deep: #ece8dd;
+  --color-ink: #191712;
+  --color-ink-soft: #55503f;
+  --color-line: #ddd7c8;
+  --color-pine: #0f3b31;
+  --color-pine-deep: #0a2a23;
+  --color-pine-soft: #1c5244;
+  --color-verm: #f4471f;
+  --color-verm-deep: #c93312;
+  --color-amber: #ffc24b;
+  --color-sage: #dfe6d2;
+  --color-sky-soft: #d9e4e0;
+
+  --font-display: "Yekan Bakh", "YekanBakh", "Vazirmatn", Tahoma, sans-serif;
+  --font-body: "Yekan Bakh", "YekanBakh", "Vazirmatn", Tahoma, sans-serif;
+}
+
+/* Yekan Bakh: display headings get ExtraBold */
+.font-display {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-verm);
+  color: var(--color-paper);
+}
+
+/* ---------- textures ---------- */
+.bg-grid-faint {
+  background-image: linear-gradient(to left, rgba(25, 23, 18, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(25, 23, 18, 0.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.bg-grid-dark {
+  background-image: linear-gradient(to left, rgba(245, 242, 235, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 242, 235, 0.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.19, 0.65, 0.22, 1),
+    transform 0.8s cubic-bezier(0.19, 0.65, 0.22, 1);
+  will-change: opacity, transform;
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94) translateY(14px);
+  transition:
+    opacity 0.9s cubic-bezier(0.19, 0.65, 0.22, 1),
+    transform 0.9s cubic-bezier(0.19, 0.65, 0.22, 1);
+}
+.reveal.in,
+.reveal-scale.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* line-mask reveal */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+}
+.mask-line > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.19, 0.65, 0.22, 1);
+}
+.mask-line.in > span {
+  transform: translateY(0);
+}
+
+/* ---------- keyframes ---------- */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -20px, 0) rotate(7deg);
+  }
+}
+.drift {
+  animation: drift 9s ease-in-out infinite;
+}
+.drift-slow {
+  animation: drift 14s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 26s linear infinite;
+}
+
+@keyframes dash-move {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+.dash-live {
+  stroke-dasharray: 5 6;
+  animation: dash-move 1.6s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.7);
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.gantt-bar {
+  transform-origin: right center;
+  transform: scaleX(0);
+}
+.in .gantt-bar,
+.gantt-bar.in {
+  animation: bar-grow 1.1s cubic-bezier(0.19, 0.65, 0.22, 1) forwards;
+}
+
+@keyframes spark-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.spark-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+.in .spark-path {
+  animation: spark-draw 1.8s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+.wiggle {
+  animation: wiggle 5s ease-in-out infinite;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.panel-in {
+  animation: panel-in 0.45s cubic-bezier(0.19, 0.65, 0.22, 1) both;
+}
+
+@keyframes tick-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.tick-pop {
+  animation: tick-pop 0.45s cubic-bezier(0.19, 0.65, 0.22, 1);
+}
+
+/* ---------- fullscreen mobile menu ---------- */
+@keyframes menu-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.7em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.menu-link {
+  animation: menu-rise 0.55s cubic-bezier(0.19, 0.65, 0.22, 1) both;
+}
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.menu-fade {
+  animation: menu-fade 0.4s ease both;
+}
+
+/* ---------- stats tickets ---------- */
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(25, 23, 18, 0.05) 0 2px,
+    transparent 2px 16px
+  );
+}
+.outline-ink {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(25, 23, 18, 0.15);
+}
+
+/* ---------- bits ---------- */
+.card-tilt {
+  transition: transform 0.5s cubic-bezier(0.19, 0.65, 0.22, 1), box-shadow 0.5s ease;
+}
+.card-tilt:hover {
+  transform: translateY(-6px) rotate(0deg) !important;
+  box-shadow: 0 24px 48px -18px rgba(25, 23, 18, 0.28);
+}
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.19, 0.65, 0.22, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: right;
+}
+
+.kanban-card {
+  cursor: grab;
+}
+.kanban-card:active {
+  cursor: grabbing;
+}
+.kanban-card.dragging {
+  opacity: 0.45;
+  transform: rotate(2deg) scale(0.97);
+}
+.drop-col {
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.drop-col.over {
+  background: rgba(244, 71, 31, 0.06);
+  border-color: var(--color-verm) !important;
+}
+
+.progress-ring circle {
+  transition: stroke-dashoffset 0.7s cubic-bezier(0.19, 0.65, 0.22, 1);
+}
+
+.outline-word {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(245, 242, 235, 0.4);
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-amber);
+  outline-offset: 3px;
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .mask-line > span {
+    transform: none;
+    transition: none;
+  }
+  .marquee-track,
+  .drift,
+  .drift-slow,
+  .spin-slow,
+  .wiggle,
+  .pulse-dot,
+  .dash-live {
+    animation: none;
+  }
+  .gantt-bar {
+    transform: scaleX(1);
+    animation: none;
+  }
+  .spark-path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .panel-in {
+    animation: none;
+  }
+  .tick-pop {
+    animation: none;
+  }
+  .menu-link,
+  .menu-fade {
+    animation: none;
+  }
+  .kanban-card,
+  .card-tilt,
+  .progress-ring circle {
+    transition: none;
+  }
+  .theme-morph,
+  .theme-morph *,
+  .theme-morph *::before,
+  .theme-morph *::after {
+    transition: none !important;
+  }
+}
+
+/* ---------- alternate color themes (runtime override) ---------- */
+/* default = کاهگی و ورمیلیون (بدون data-theme) */
+
+/* اقیانوس — تک‌رنگ فیروزه‌ای */
+html[data-theme="ocean"] {
+  --color-paper: #edf4f4;
+  --color-paper-deep: #deebea;
+  --color-ink: #0c1f22;
+  --color-ink-soft: #476267;
+  --color-line: #cfe0df;
+  --color-pine: #0b3a40;
+  --color-pine-deep: #062a2f;
+  --color-pine-soft: #11545c;
+  --color-verm: #0c93a6;
+  --color-verm-deep: #096b7a;
+  --color-amber: #a9dfd3;
+  --color-sage: #d8e7e2;
+  --color-sky-soft: #d3e4e4;
+}
+
+/* ---- dark themes ---- */
+html[data-theme="midnight"] {
+  --color-paper: #0e1218;
+  --color-paper-deep: #151b24;
+  --color-ink: #e8edf5;
+  --color-ink-soft: #94a0b5;
+  --color-line: #242d3b;
+  --color-pine: #131b28;
+  --color-pine-deep: #0a101a;
+  --color-pine-soft: #1b2738;
+  --color-verm: #5b7cfa;
+  --color-verm-deep: #3f5fe0;
+  --color-amber: #f0b64a;
+  --color-sage: #161f2c;
+  --color-sky-soft: #151e2a;
+  --theme-ink: #e8edf5;
+  --theme-ink-soft: #94a0b5;
+  --theme-verm: #5b7cfa;
+  --theme-verm-deep: #3f5fe0;
+  color-scheme: dark;
+}
+
+html[data-theme="nightforest"] {
+  --color-paper: #0d1712;
+  --color-paper-deep: #122019;
+  --color-ink: #e7f1ea;
+  --color-ink-soft: #92a89a;
+  --color-line: #1f3128;
+  --color-pine: #0f1f17;
+  --color-pine-deep: #08130d;
+  --color-pine-soft: #173023;
+  --color-verm: #3ecf77;
+  --color-verm-deep: #2aa75d;
+  --color-amber: #d8e76e;
+  --color-sage: #17251c;
+  --color-sky-soft: #16231b;
+  --theme-ink: #e7f1ea;
+  --theme-ink-soft: #92a89a;
+  --theme-verm: #3ecf77;
+  --theme-verm-deep: #2aa75d;
+  color-scheme: dark;
+}
+
+html[data-theme="copper"] {
+  --color-paper: #17110c;
+  --color-paper-deep: #201811;
+  --color-ink: #f6ecdf;
+  --color-ink-soft: #b09a83;
+  --color-line: #33271b;
+  --color-pine: #1e1710;
+  --color-pine-deep: #120d08;
+  --color-pine-soft: #2b2015;
+  --color-verm: #ff8046;
+  --color-verm-deep: #e05f26;
+  --color-amber: #f5b73f;
+  --color-sage: #251b10;
+  --color-sky-soft: #231a10;
+  --theme-ink: #f6ecdf;
+  --theme-ink-soft: #b09a83;
+  --theme-verm: #ff8046;
+  --theme-verm-deep: #e05f26;
+  color-scheme: dark;
+}
+
+html[data-theme="wine"] {
+  --color-paper: #170f14;
+  --color-paper-deep: #20151c;
+  --color-ink: #f7e9f0;
+  --color-ink-soft: #b795a8;
+  --color-line: #33202b;
+  --color-pine: #1e131a;
+  --color-pine-deep: #120a0f;
+  --color-pine-soft: #2b1a25;
+  --color-verm: #ff5d84;
+  --color-verm-deep: #e13f68;
+  --color-amber: #f6bcd0;
+  --color-sage: #271722;
+  --color-sky-soft: #251621;
+  --theme-ink: #f7e9f0;
+  --theme-ink-soft: #b795a8;
+  --theme-verm: #ff5d84;
+  --theme-verm-deep: #e13f68;
+  color-scheme: dark;
+}
+
+/* ---- shared readability fixes for all dark themes ---- */
+/* in dark themes "paper" is dark; lighten text-paper used on dark sections */
+html[data-dark] #timeline .text-paper { color: var(--theme-ink); }
+html[data-dark] #timeline .text-paper\/80 { color: color-mix(in srgb, var(--theme-ink) 80%, transparent); }
+html[data-dark] #timeline .text-paper\/70 { color: color-mix(in srgb, var(--theme-ink) 70%, transparent); }
+html[data-dark] #timeline .text-paper\/60 { color: color-mix(in srgb, var(--theme-ink) 60%, transparent); }
+html[data-dark] #timeline .text-paper\/55 { color: color-mix(in srgb, var(--theme-ink) 55%, transparent); }
+html[data-dark] #timeline .text-paper\/50 { color: color-mix(in srgb, var(--theme-ink) 50%, transparent); }
+
+/* the sim-panel sidebar gets a light surface in dark themes; its text must go dark */
+html[data-dark] #timeline aside {
+  --color-ink: var(--theme-ink);
+  --color-ink-soft: var(--theme-ink-soft);
+  --color-paper: color-mix(in srgb, var(--theme-ink) 92%, var(--theme-verm) 3%);
+  --color-paper-deep: color-mix(in srgb, var(--theme-ink) 82%, var(--theme-verm) 6%);
+  background-color: color-mix(in srgb, var(--theme-ink) 92%, var(--theme-verm) 3%);
+  color: #10141c;
+}
+html[data-dark] #timeline aside .text-paper\/55 { color: rgba(16, 20, 28, 0.55); }
+html[data-dark] #timeline aside .text-paper\/50 { color: rgba(16, 20, 28, 0.5); }
+html[data-dark] #timeline aside .text-paper\/40 { color: rgba(16, 20, 28, 0.4); }
+html[data-dark] #timeline aside .bg-verm.text-paper { color: var(--theme-ink); }
+html[data-dark] #timeline aside .border-paper\/10 { border-color: rgba(16, 20, 28, 0.12); }
+
+/* stats band stays a light inverted band in dark themes: text on it goes dark */
+html[data-dark] #stats .text-ink { color: #191712; }
+html[data-dark] #stats .text-verm { color: #c93312; }
+html[data-dark] #stats .text-ink-soft { color: #55503f; }
+html[data-dark] #stats .border-ink\/25,
+html[data-dark] #stats .border-ink\/20 { border-color: rgba(25, 23, 18, 0.25); }
+/* but tickets flip back to the dark theme's light tokens */
+html[data-dark] #stats .ticket-card {
+  --color-ink: var(--theme-ink);
+  --color-ink-soft: var(--theme-ink-soft);
+  --color-verm: var(--theme-verm);
+  --color-verm-deep: var(--theme-verm-deep);
+}
+
+/* colored backgrounds + paper text combos */
+html[data-dark] .bg-ink.text-paper { color: color-mix(in srgb, var(--theme-ink) 90%, var(--theme-verm) 5%); }
+html[data-dark] .bg-ink { background-color: color-mix(in srgb, var(--theme-ink) 90%, var(--theme-verm) 5%); }
+html[data-dark] #cta .bg-ink.text-paper { color: #14181f; }
+html[data-dark] .bg-verm.text-paper { color: #0c1016; }
+html[data-dark] .bg-pine.text-paper { color: var(--theme-ink); }
+html[data-dark] .border-ink { border-color: color-mix(in srgb, var(--theme-ink) 35%, transparent); }
+
+/* smooth theme morph */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-morph,
+  .theme-morph *,
+  .theme-morph *::before,
+  .theme-morph *::after {
+    transition:
+      background-color 0.55s ease,
+      color 0.55s ease,
+      border-color 0.55s ease,
+      fill 0.55s ease,
+      stroke 0.55s ease,
+      box-shadow 0.55s ease !important;
+  }
+}
