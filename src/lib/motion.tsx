@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { getLang } from "./i18n";
 
 /* ---------- prefers-reduced-motion ---------- */
 export function usePrefersReducedMotion(): boolean {
@@ -123,7 +124,7 @@ export function useCountUp(end: number, start: boolean, duration = 1600, decimal
     return () => cancelAnimationFrame(raf);
   }, [start, end, duration, reduced]);
 
-  return value.toLocaleString("fa-IR", {
+  return value.toLocaleString(getLang() === "fa" ? "fa-IR" : "en-US", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });
@@ -138,7 +139,9 @@ export function useScramble(text: string, start: boolean, speed = 28): string {
       setOut(text);
       return;
     }
-    const glyphs = "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی۰۱۲۳۴۵۶۷۸۹#*+";
+    const glyphs = /[\u0600-\u06FF]/.test(text)
+      ? "ابپتثجچحخدذرزژسشصضطظعغفقکگلمنوهی۰۱۲۳۴۵۶۷۸۹#*+"
+      : "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#*+";
     let frame = 0;
     const total = Math.max(14, text.length + 8);
     const id = window.setInterval(() => {

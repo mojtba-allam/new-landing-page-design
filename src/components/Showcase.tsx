@@ -1,10 +1,12 @@
 import { Reveal } from "../lib/motion";
+import { useI18n, tr, pad2, type Pair } from "../lib/i18n";
 import { SectionHead } from "./Chrome";
 import { IconArrow } from "./Icons";
 import SimPanel from "./Panel";
 
 /* ================= Simulated app panel (dark section) ================= */
 export function GanttSection() {
+  const { isFa } = useI18n();
   return (
     <section id="timeline" className="relative bg-pine text-paper py-24 sm:py-32 scroll-mt-24 overflow-hidden">
       <div className="absolute inset-0 bg-grid-dark" aria-hidden />
@@ -16,24 +18,34 @@ export function GanttSection() {
         <div className="flex flex-wrap items-end justify-between gap-8">
           <SectionHead
             dark
-            index="۰۱"
+            index={pad2(1)}
             title={
-              <>
-                یک نگاه، <span className="text-amber">کلِ اسپرینت</span>
-              </>
+              isFa ? (
+                <>
+                  یک نگاه، <span className="text-amber">کلِ اسپرینت</span>
+                </>
+              ) : (
+                <>
+                  One glance, <span className="text-amber">the whole sprint</span>
+                </>
+              )
             }
-            desc="این یک شبیه‌سازی زنده از پنل فینولو است؛ از منوی کنار بین داشبورد، بورد، تحلیل‌ها، تیم‌ها و زمان بگرد — و نماهای بورد را هم عوض کن: لیستی، زمانی، کانبان، گراف و درختی."
+            desc={
+              isFa
+                ? "این یک شبیه‌سازی زنده از پنل فینولو است؛ از منوی کنار بین داشبورد، بورد، تحلیل‌ها، تیم‌ها و زمان بگرد — و نماهای بورد را هم عوض کن: لیستی، زمانی، کانبان، گراف و درختی."
+                : "This is a live simulation of the Finolo panel — switch between Dashboard, Board, Analytics, Teams and Time on the side menu, and change board views: list, timeline, kanban, graph and tree."
+            }
           />
           <Reveal delay={150}>
             <div className="flex flex-wrap gap-2.5 pb-2">
               {[
-                ["bg-ink/40 border border-paper/30", "برای انجام"],
-                ["bg-amber", "در حال انجام"],
-                ["bg-verm", "انجام شد"],
-              ].map(([c, l]) => (
-                <span key={l} className="inline-flex items-center gap-2 text-xs font-bold text-paper/80 border border-paper/20 rounded-full px-3 py-1.5">
+                { c: "bg-ink/40 border border-paper/30", l: { fa: "برای انجام", en: "To do" } },
+                { c: "bg-amber", l: { fa: "در حال انجام", en: "In progress" } },
+                { c: "bg-verm", l: { fa: "انجام شد", en: "Done" } },
+              ].map(({ c, l }) => (
+                <span key={l.fa} className="inline-flex items-center gap-2 text-xs font-bold text-paper/80 border border-paper/20 rounded-full px-3 py-1.5">
                   <span className={`w-2.5 h-2.5 rounded-sm ${c}`} />
-                  {l}
+                  {tr(l)}
                 </span>
               ))}
             </div>
@@ -45,7 +57,10 @@ export function GanttSection() {
         </Reveal>
 
         <Reveal delay={200} className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-paper/60">
-          {["بدون نصب — همین‌جا دست بکش", "همهٔ نماها روی یک دادهٔ واحد", "تقویم و اعداد کاملاً شمسی"].map((t) => (
+          {(isFa
+            ? ["بدون نصب — همین‌جا دست بکش", "همهٔ نماها روی یک دادهٔ واحد", "تقویم و اعداد کاملاً شمسی"]
+            : ["No install — poke around right here", "Every view shares one dataset", "Calendar & numbers fully native"]
+          ).map((t) => (
             <span key={t} className="inline-flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber" />
               {t}
@@ -58,36 +73,36 @@ export function GanttSection() {
 }
 
 /* ================= Features index (interactive rows) ================= */
-const FEATURE_ROWS = [
+const FEATURE_ROWS: { id: string; title: Pair; desc: Pair }[] = [
   {
     id: "workspaces",
-    title: "ورک‌اسپیس و پروژهٔ نامحدود",
-    desc: "چند فضای کاری، هرکدام با تیم و پروژه‌های خودش — بدون سقف و بدون نگرانی.",
+    title: { fa: "ورک‌اسپیس و پروژهٔ نامحدود", en: "Unlimited workspaces & projects" },
+    desc: { fa: "چند فضای کاری، هرکدام با تیم و پروژه‌های خودش — بدون سقف و بدون نگرانی.", en: "Multiple workspaces, each with its own teams and projects — no caps, no worries." },
   },
   {
     id: "views",
-    title: "پنج نمای بورد",
-    desc: "کانبان، لیست، گراف، تایم‌لاین و درختی — یک داده، پنج نگاه متفاوت.",
+    title: { fa: "پنج نمای بورد", en: "Five board views" },
+    desc: { fa: "کانبان، لیست، گراف، تایم‌لاین و درختی — یک داده، پنج نگاه متفاوت.", en: "Kanban, list, graph, timeline and tree — one dataset, five lenses." },
   },
   {
     id: "ai",
-    title: "پرامپت AI برای ساخت پروژه",
-    desc: "ستون‌ها و تسک‌ها را با یک جمله بساز؛ بقیه‌اش را به خودت بسپار.",
+    title: { fa: "پرامپت AI برای ساخت پروژه", en: "AI prompts that build projects" },
+    desc: { fa: "ستون‌ها و تسک‌ها را با یک جمله بساز؛ بقیه‌اش را به خودت بسپار.", en: "Create columns and tasks with a single sentence — leave the rest to it." },
   },
   {
     id: "chat",
-    title: "چت‌روم و هشدار بلادرنگ",
-    desc: "گفتگوی تیم و اعلان‌های زنده، درست کنار تسک‌ها — بدون تعویض اپ.",
+    title: { fa: "چت‌روم و هشدار بلادرنگ", en: "Chat rooms & real-time alerts" },
+    desc: { fa: "گفتگوی تیم و اعلان‌های زنده، درست کنار تسک‌ها — بدون تعویض اپ.", en: "Team chat and live alerts right next to the tasks — no app-switching." },
   },
   {
     id: "dev",
-    title: "MCP Server و CI/CD",
-    desc: "اتصال به ابزارهای توسعه و خط لولهٔ خودکارِ ساخت، تست و انتشار.",
+    title: { fa: "MCP Server و CI/CD", en: "MCP Server & CI/CD" },
+    desc: { fa: "اتصال به ابزارهای توسعه و خط لولهٔ خودکارِ ساخت، تست و انتشار.", en: "Plug into dev tools with an automated build, test and ship pipeline." },
   },
   {
     id: "knowledge",
-    title: "مدیریت دانش و داکیومنت",
-    desc: "ویکی هر پروژه کنار تسک‌هایش — دانش تیم هیچ‌وقت گم نمی‌شود.",
+    title: { fa: "مدیریت دانش و داکیومنت", en: "Knowledge & docs management" },
+    desc: { fa: "ویکی هر پروژه کنار تسک‌هایش — دانش تیم هیچ‌وقت گم نمی‌شود.", en: "Every project's wiki lives beside its tasks — team knowledge never gets lost." },
   },
 ];
 
@@ -176,7 +191,7 @@ export function FeaturesIndex() {
         <path d="M12 2.5c.7 4.9 2.6 7 7.5 7.7-4.9.7-6.8 2.8-7.5 7.6-.7-4.8-2.6-6.9-7.5-7.6 4.9-.7 6.8-2.8 7.5-7.7Z" />
       </svg>
       <div className="outline-ink absolute -right-8 top-10 font-display text-[9rem] leading-none rotate-6 select-none pointer-events-none hidden xl:block opacity-70" aria-hidden>
-        ۶
+        {isFa ? "۶" : "6"}
       </div>
 
       <div className="relative mx-auto max-w-7xl px-5 lg:px-8">
@@ -245,9 +260,9 @@ export function FeaturesIndex() {
                       {String(i + 1).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)]).padStart(2, "۰")}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg sm:text-xl leading-snug text-ink">{f.title}</h3>
+                      <h3 className="font-display text-lg sm:text-xl leading-snug text-ink">{tr(f.title)}</h3>
                       <p className="mt-0.5 text-[13px] sm:text-sm text-ink-soft group-hover:text-ink/70 transition-colors duration-300 font-medium line-clamp-1">
-                        {f.desc}
+                        {tr(f.desc)}
                       </p>
                     </div>
                     <span className="hidden md:grid w-16 h-12 place-items-center rounded-xl border border-ink/15 bg-paper-deep/60 text-ink-soft group-hover:border-ink/40 group-hover:bg-paper group-hover:text-ink group-hover:-rotate-6 group-hover:scale-110 transition-all duration-300 shrink-0">
