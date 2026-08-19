@@ -482,7 +482,7 @@ html[data-theme="glass"] {
   --color-pine-soft: #2c2c2e;
   --color-verm: #2d7aff;
   --color-verm-deep: #0460ff;
-  --color-amber: #dbe7fd;
+  --color-amber: #fc6b5c;
   --color-sage: #e9e0ff;
   --color-sky-soft: #e8f0fe;
 
@@ -519,9 +519,9 @@ html[data-theme="glass"] body::before {
   pointer-events: none;
   background:
     radial-gradient(ellipse 80% 60% at 15% 20%, rgba(45, 122, 255, 0.22), transparent 62%),
-    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(130, 112, 219, 0.17), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(252, 107, 92, 0.16), transparent 60%),
     radial-gradient(ellipse 80% 60% at 50% 82%, rgba(34, 160, 107, 0.15), transparent 62%),
-    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(226, 129, 26, 0.1), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(252, 107, 92, 0.12), transparent 60%),
     #f5f5f7;
 }
 /* the paper-theme ambient (grid + drifting glyphs + noise) is off */
