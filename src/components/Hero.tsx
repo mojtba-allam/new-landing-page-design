@@ -81,13 +81,7 @@ export default function Hero() {
               </span>
               <span className="mask-line in">
                 <span style={{ transitionDelay: "220ms" }}>
-                  {tr(S.h1b)}{" "}
-                  <span className="relative inline-block text-verm">
-                    {tr(S.h1b2)}
-                    <svg viewBox="0 0 120 14" className="absolute -bottom-1 right-0 w-full h-3 text-amber" fill="none" aria-hidden>
-                      <path d="M3 10c20-6 40-6 57-3 15 2.5 35 2 57-4" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-                    </svg>
-                  </span>
+                  {tr(S.h1b)} <span className="text-verm">{tr(S.h1b2)}</span>
                 </span>
               </span>
               <span className="mask-line in">
