@@ -390,6 +390,55 @@ button {
   }
 }
 
+/* ---------- features page: living bits ---------- */
+@keyframes toast-cycle {
+  0% { opacity: 0; transform: translateY(16px) scale(0.97); }
+  6%, 30% { opacity: 1; transform: none; }
+  38%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+.toast-a { animation: toast-cycle 9s cubic-bezier(0.19, 0.65, 0.22, 1) infinite; }
+.toast-b { animation: toast-cycle 9s cubic-bezier(0.19, 0.65, 0.22, 1) 3s infinite; }
+.toast-c { animation: toast-cycle 9s cubic-bezier(0.19, 0.65, 0.22, 1) 6s infinite; }
+
+@keyframes pipe-run {
+  from { inset-inline-start: 5%; }
+  to { inset-inline-start: 88%; }
+}
+.pipe-dot { animation: pipe-run 3.4s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
+
+@keyframes stage-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(244, 71, 31, 0); }
+  15% { box-shadow: 0 0 0 7px rgba(244, 71, 31, 0.3); }
+}
+.stage-pulse { animation: stage-pulse 3.4s ease-out infinite; }
+
+@keyframes blink-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.ai-caret { animation: blink-caret 0.9s step-end infinite; }
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.msg-in { animation: msg-in 0.45s cubic-bezier(0.19, 0.65, 0.22, 1) both; }
+
+@keyframes task-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.task-in { animation: task-in 0.4s cubic-bezier(0.19, 0.65, 0.22, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-a, .toast-b, .toast-c { animation: none; opacity: 1; transform: none; }
+  .toast-b, .toast-c { display: none; }
+  .pipe-dot { animation: none; inset-inline-start: 50%; }
+  .stage-pulse { animation: none; }
+  .ai-caret { animation: none; }
+  .msg-in, .task-in { animation: none; opacity: 1; transform: none; }
+}
+
 
 
 

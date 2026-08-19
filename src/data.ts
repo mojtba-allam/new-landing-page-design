@@ -1,5 +1,6 @@
 /* ================= Nav ================= */
 export const NAV_LINKS = [
+  { label: "ویژگی‌ها", href: "#/features" },
   { label: "پنل محصول", href: "#timeline" },
   { label: "قیمت‌گذاری", href: "#pricing" },
   { label: "نظرات", href: "#testimonials" },
@@ -136,6 +137,7 @@ export const FOOTER_COLS: { title: string; links: { label: string; href: string 
   {
     title: "محصول",
     links: [
+      { label: "ویژگی‌های فینولو", href: "#/features" },
       { label: "پنل زنده (دمو)", href: "#/timeline" },
       { label: "گانت و تایم‌لاین", href: "#/timeline" },
       { label: "قیمت‌گذاری", href: "#/pricing" },
