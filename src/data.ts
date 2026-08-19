@@ -3,8 +3,6 @@ export const NAV_LINKS = [
   { label: "ویژگی‌ها", href: "#/features" },
   { label: "پنل محصول", href: "#timeline" },
   { label: "قیمت‌گذاری", href: "#pricing" },
-  { label: "نظرات", href: "#testimonials" },
-  { label: "سوالات", href: "#faq" },
 ];
 
 /* ================= Hero kanban ================= */
