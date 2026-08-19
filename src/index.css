@@ -631,6 +631,157 @@ html[data-theme="glass"] .flash-target {
   }
 }
 
+/* ============================================================
+   DARK MODE — works on both themes (paper + glass)
+   Applied via html[data-mode="dark"]
+   ============================================================ */
+
+/* ---------- Paper theme · dark ---------- */
+html[data-mode="dark"] {
+  --color-paper: #221d15; /* raised card surface */
+  --color-paper-deep: #2c261c;
+  --color-ink: #f2ecdf; /* primary text (flipped light) */
+  --color-ink-soft: #b3a88e;
+  --color-line: rgba(255, 255, 255, 0.14);
+  --color-pine: #1c4a3c;
+  --color-pine-deep: #123329;
+  --color-pine-soft: #27594a;
+  --color-verm: #ff6a45;
+  --color-verm-deep: #e8502c;
+  --color-amber: #ffc24b;
+  --color-sage: #37432e;
+  --color-sky-soft: #2f3d39;
+  color-scheme: dark;
+}
+html[data-mode="dark"] body {
+  background: #181410; /* page canvas sits a touch below card surface */
+  color: var(--color-ink);
+}
+
+/* solid ink surfaces must stay dark (sidebar, footer chrome, buttons, chips) */
+html[data-mode="dark"] .bg-ink {
+  background-color: #120f0a;
+}
+/* "paper" used as light-on-dark text must stay light */
+html[data-mode="dark"] .text-paper {
+  color: #f7f1e4;
+}
+/* faint grid → light hairlines */
+html[data-mode="dark"] .bg-grid-faint {
+  background-image:
+    linear-gradient(to left, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+}
+/* hard offset shadows → soft dark shadows + faint rim */
+html[data-mode="dark"] [class*="shadow-["] {
+  box-shadow:
+    0 10px 30px -12px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+html[data-mode="dark"] .card-tilt:hover {
+  box-shadow:
+    0 22px 44px -16px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+/* ambient watermark strokes read lighter */
+html[data-mode="dark"] .outline-ink {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.1);
+}
+html[data-mode="dark"] .outline-word {
+  -webkit-text-stroke: 1.5px rgba(247, 241, 228, 0.35);
+}
+/* selection + focus */
+html[data-mode="dark"] ::selection {
+  background: var(--color-verm);
+  color: #181410;
+}
+html[data-mode="dark"] :focus-visible {
+  outline-color: var(--color-amber);
+}
+
+/* stat band keeps its bright amber identity → dark text on it, light text on the tickets */
+html[data-mode="dark"] #stats .text-ink {
+  color: #1c1712;
+}
+html[data-mode="dark"] #stats .text-ink-soft {
+  color: #5c5240;
+}
+html[data-mode="dark"] #stats .ticket-card .text-ink {
+  color: var(--color-ink);
+}
+html[data-mode="dark"] #stats .ticket-card .text-ink-soft {
+  color: var(--color-ink-soft);
+}
+
+/* ---------- Glass theme · dark (Apple dark) ---------- */
+html[data-theme="glass"][data-mode="dark"] {
+  --color-paper: #1c1c1e;
+  --color-paper-deep: #2c2c2e;
+  --color-ink: #f5f5f7;
+  --color-ink-soft: #98989f;
+  --color-line: rgba(255, 255, 255, 0.12);
+  --color-pine: #101014;
+  --color-pine-deep: #0a0a0c;
+  --color-pine-soft: #2c2c2e;
+  --color-verm: #5694ff;
+  --color-verm-deep: #2d7aff;
+  --color-amber: #fc6b5c;
+  --color-sage: #2b2640;
+  --color-sky-soft: #14243f;
+  color-scheme: dark;
+}
+html[data-theme="glass"][data-mode="dark"] body {
+  background: #0a0a0c;
+}
+html[data-theme="glass"][data-mode="dark"] .bg-ink {
+  background-color: #0a0a0c;
+}
+html[data-theme="glass"][data-mode="dark"] .text-paper {
+  color: #f5f5f7;
+}
+html[data-theme="glass"][data-mode="dark"] body::before {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(86, 148, 255, 0.14), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(167, 139, 250, 0.11), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 82%, rgba(48, 209, 88, 0.09), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(252, 107, 92, 0.1), transparent 60%),
+    #0a0a0c;
+}
+html[data-theme="glass"][data-mode="dark"] .bg-grid-faint {
+  background-image:
+    linear-gradient(to left, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+/* dark glass chrome keeps blur, darker fill */
+html[data-theme="glass"][data-mode="dark"] header.fixed {
+  background: rgba(20, 20, 22, 0.6);
+}
+/* glass dark stats band: amber still bright → dark text on band, system text on tickets */
+html[data-theme="glass"][data-mode="dark"] #stats .text-ink {
+  color: #241c1a;
+}
+html[data-theme="glass"][data-mode="dark"] #stats .text-ink-soft {
+  color: #6e5f58;
+}
+html[data-theme="glass"][data-mode="dark"] #stats .ticket-card .text-ink {
+  color: var(--color-ink);
+}
+html[data-theme="glass"][data-mode="dark"] #stats .ticket-card .text-ink-soft {
+  color: var(--color-ink-soft);
+}
+html[data-theme="glass"][data-mode="dark"] :focus-visible {
+  outline-color: #5694ff;
+}
+
+/* reduced transparency → solid chrome in dark too */
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="glass"][data-mode="dark"] header.fixed {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(10, 10, 12, 0.97);
+  }
+}
+
 /* smooth cross-fade while switching themes */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-morph,
