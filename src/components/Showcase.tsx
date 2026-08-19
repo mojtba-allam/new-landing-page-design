@@ -184,6 +184,8 @@ function FeatureDoodle({ id }: { id: string }) {
 }
 
 export function FeaturesIndex() {
+  const { isFa } = useI18n();
+  const chips = isFa ? ["۱۰+ قابلیت", "۵ نمای بورد", "AI داخل محصول"] : ["10+ capabilities", "5 board views", "AI built in"];
   return (
     <section id="features" className="relative py-24 sm:py-32 overflow-hidden bg-paper scroll-mt-24">
       <div className="absolute inset-0 bg-grid-faint opacity-60" aria-hidden />
@@ -202,25 +204,35 @@ export function FeaturesIndex() {
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center gap-2 text-[11px] font-black text-verm bg-verm/10 border border-verm/40 rounded-full px-3 py-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-verm pulse-dot" />
-                  قابلیت‌ها
+                  {isFa ? "قابلیت‌ها" : "Capabilities"}
                 </span>
-                <span className="font-display text-verm/60 text-lg tabular-nums">۰۲</span>
+                <span className="font-display text-verm/60 text-lg tabular-nums">{pad2(2)}</span>
                 <span className="h-px flex-1 border-t border-dashed border-ink/25" />
               </div>
             </Reveal>
             <Reveal delay={120}>
               <h2 className="font-display text-[clamp(2.4rem,5vw,4.2rem)] leading-[1.12] mt-5">
-                ویژگی‌های <span className="text-verm">فینولو</span>
+                {isFa ? (
+                  <>
+                    ویژگی‌های <span className="text-verm">فینولو</span>
+                  </>
+                ) : (
+                  <>
+                    Finolo, <span className="text-verm">feature by feature</span>
+                  </>
+                )}
               </h2>
             </Reveal>
             <Reveal delay={220}>
               <p className="mt-5 text-ink-soft leading-8 font-medium max-w-md">
-                از یک ورک‌اسپیس ساده تا خط لولهٔ CI/CD و هوش مصنوعی — همه‌چیز داخل همان بوردی است که هر روز باز می‌کنی. نه ده ابزار جدا، نه ده اشتراک جدا.
+                {isFa
+                  ? "از یک ورک‌اسپیس ساده تا خط لولهٔ CI/CD و هوش مصنوعی — همه‌چیز داخل همان بوردی است که هر روز باز می‌کنی. نه ده ابزار جدا، نه ده اشتراک جدا."
+                  : "From a simple workspace to CI/CD pipelines and AI — everything lives inside the same board you open every day. Not ten tools, not ten subscriptions."}
               </p>
             </Reveal>
 
             <Reveal delay={300} className="mt-7 flex flex-wrap gap-2.5">
-              {["۱۰+ قابلیت", "۵ نمای بورد", "AI داخل محصول"].map((c) => (
+              {chips.map((c) => (
                 <span key={c} className="text-xs font-black rounded-full border-[1.5px] border-ink/20 bg-paper-deep/70 px-3.5 py-1.5 hover:border-verm hover:text-verm hover:-translate-y-0.5 transition-all duration-200 cursor-default">
                   {c}
                 </span>
@@ -232,11 +244,11 @@ export function FeaturesIndex() {
                 href="#/features"
                 className="group inline-flex items-center gap-3 bg-verm text-paper rounded-full px-7 py-3.5 font-bold shadow-[5px_5px_0_0_rgba(25,23,18,1)] hover:shadow-[2px_2px_0_0_rgba(25,23,18,1)] hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-200"
               >
-                همهٔ ویژگی‌ها را ببین
+                {isFa ? "همهٔ ویژگی‌ها را ببین" : "See all features"}
                 <IconArrow className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
               </a>
               <a href="#timeline" className="group inline-flex items-center gap-2 font-bold text-ink-soft hover:text-verm transition-colors link-underline">
-                یا دمو را تماشا کن
+                {isFa ? "یا دمو را تماشا کن" : "or watch the demo"}
                 <span className="w-7 h-7 grid place-items-center rounded-full border-[1.5px] border-ink bg-amber group-hover:bg-verm group-hover:text-paper transition-colors">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="w-2.5 h-2.5">
                     <path d="M8 5.5v13l11-6.5L8 5.5Z" />
@@ -257,7 +269,7 @@ export function FeaturesIndex() {
                   <span aria-hidden className="absolute inset-0 bg-amber translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.19,0.65,0.22,1)]" />
                   <div className="relative flex items-center gap-4 sm:gap-6 px-5 sm:px-6 py-4 sm:py-5">
                     <span className="font-display text-2xl sm:text-3xl text-ink/25 group-hover:text-verm transition-colors duration-300 w-9 shrink-0 tabular-nums">
-                      {String(i + 1).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[Number(d)]).padStart(2, "۰")}
+                      {pad2(i + 1)}
                     </span>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-display text-lg sm:text-xl leading-snug text-ink">{tr(f.title)}</h3>

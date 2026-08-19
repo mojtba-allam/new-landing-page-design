@@ -1,6 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Reveal } from "../lib/motion";
 import { Footer, Nav } from "./Chrome";
+import { useI18n } from "../lib/i18n";
 
 const DEFAULT_TITLE = "فینولو | نرم‌افزار مدیریت پروژه فارسی — کانبان، گانت و گزارش زنده";
 
@@ -35,6 +36,7 @@ export function PageShell({
   sticker?: string;
   children: ReactNode;
 }) {
+  const { isFa } = useI18n();
   return (
     <div className="relative min-h-screen">
       <Nav />
@@ -55,12 +57,12 @@ export function PageShell({
                 href="#/"
                 className="inline-flex items-center gap-2 text-xs font-black border-[1.5px] border-ink bg-amber rounded-full px-4 py-2 shadow-[3px_3px_0_0_rgba(25,23,18,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[1px_1px_0_0_rgba(25,23,18,1)] transition-all duration-200 -rotate-1"
               >
-                فینولو
+                {isFa ? "فینولو" : "Finolo"}
                 <IconBack className="w-3.5 h-3.5" />
                 {crumb}
               </a>
               <span className="inline-flex items-center gap-2 text-[11px] font-black text-ink-soft border border-dashed border-ink/40 rounded-full px-3 py-1.5">
-                صفحه <span className="font-display text-sm text-verm">{index}</span>
+                {isFa ? "صفحه" : "Page"} <span className="font-display text-sm text-verm">{index}</span>
               </span>
             </div>
           </Reveal>
