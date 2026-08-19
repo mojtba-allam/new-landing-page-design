@@ -330,7 +330,7 @@ export function Testimonials() {
 }
 
 /* ================= Pricing ================= */
-function PlanCard({ plan, yearly }: { plan: (typeof PLANS)[number]; yearly: boolean }) {
+export function PlanCard({ plan, yearly }: { plan: (typeof PLANS)[number]; yearly: boolean }) {
   const price = plan.monthly < 0 ? "سفارشی" : plan.monthly === 0 ? "۰" : (yearly ? plan.yearly : plan.monthly).toLocaleString("fa-IR");
   return (
     <div

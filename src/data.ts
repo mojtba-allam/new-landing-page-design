@@ -132,18 +132,44 @@ export const FAQS = [
 ];
 
 /* ================= Footer ================= */
-export const FOOTER_COLS = [
+export const FOOTER_COLS: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: "محصول",
-    links: ["تختهٔ کانبان", "گانت و تایم‌لاین", "اتوماسیون", "گزارش‌های زنده", "اپلیکیشن موبایل"],
+    links: [
+      { label: "پنل زنده (دمو)", href: "#/timeline" },
+      { label: "گانت و تایم‌لاین", href: "#/timeline" },
+      { label: "قیمت‌گذاری", href: "#/pricing" },
+      { label: "تغییرات نسخه‌ها", href: "#/changelog" },
+      { label: "اپلیکیشن موبایل", href: "#/changelog" },
+    ],
   },
   {
     title: "منابع",
-    links: ["مرکز راهنما", "وبلاگ فینولو", "مستندات API", "وضعیت سرورها", "تغییرات نسخه‌ها"],
+    links: [
+      { label: "مرکز راهنما", href: "#/help" },
+      { label: "سوالات متداول", href: "#/faq" },
+      { label: "وضعیت سرورها", href: "#/status" },
+      { label: "مستندات و API", href: "#/help" },
+      { label: "امنیت و آپ‌تایم", href: "#/status" },
+    ],
   },
   {
     title: "شرکت",
-    links: ["دربارهٔ ما", "فرصت‌های شغلی", "تماس با فروش", "قوانین استفاده", "حریم خصوصی"],
+    links: [
+      { label: "دربارهٔ ما", href: "#/about" },
+      { label: "تماس با ما", href: "#/contact" },
+      { label: "فرصت‌های شغلی", href: "#/contact" },
+      { label: "قوانین استفاده", href: "#/terms" },
+      { label: "حریم خصوصی", href: "#/privacy" },
+    ],
+  },
+  {
+    title: "حساب",
+    links: [
+      { label: "ورود", href: "#/login" },
+      { label: "ثبت‌نام رایگان", href: "#/login" },
+      { label: "مقایسهٔ پلن‌ها", href: "#/pricing" },
+    ],
   },
 ];
 

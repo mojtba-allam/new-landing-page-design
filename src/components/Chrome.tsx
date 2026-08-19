@@ -159,7 +159,7 @@ export function Nav() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href="#pricing" className="hidden sm:block text-[15px] font-medium text-ink-soft hover:text-ink transition-colors">
+            <a href="#/login" className="hidden sm:block text-[15px] font-medium text-ink-soft hover:text-verm transition-colors">
               ورود
             </a>
             <a
@@ -262,15 +262,15 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {FOOTER_COLS.map((col) => (
               <div key={col.title}>
                 <h3 className="font-display text-lg text-amber">{col.title}</h3>
                 <ul className="mt-4 space-y-2.5 text-[15px] text-paper/65">
                   {col.links.map((l) => (
-                    <li key={l}>
-                      <a href="#top" className="hover:text-paper transition-colors link-underline">
-                        {l}
+                    <li key={l.label}>
+                      <a href={l.href} className="hover:text-paper transition-colors link-underline">
+                        {l.label}
                       </a>
                     </li>
                   ))}
