@@ -236,6 +236,23 @@ body {
   animation: tick-pop 0.45s cubic-bezier(0.19, 0.65, 0.22, 1);
 }
 
+/* هایلایت بخشِ مقصد هنگام ورود با دیپ‌لینک */
+@keyframes flash-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(244, 71, 31, 0);
+  }
+  25% {
+    box-shadow: 0 0 0 6px rgba(244, 71, 31, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(244, 71, 31, 0);
+  }
+}
+.flash-target {
+  animation: flash-ring 1.6s ease-out 0.1s;
+  border-radius: 1.25rem;
+}
+
 /* ---------- fullscreen mobile menu ---------- */
 @keyframes menu-rise {
   from {
@@ -380,7 +397,8 @@ button {
     animation: none;
   }
   .menu-link,
-  .menu-fade {
+  .menu-fade,
+  .flash-target {
     animation: none;
   }
   .kanban-card,

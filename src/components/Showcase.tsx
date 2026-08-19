@@ -91,6 +91,16 @@ const FEATURE_ROWS = [
   },
 ];
 
+/* نگاشت ردیف‌های صفحهٔ اول به لنگرهای صفحهٔ ویژگی‌ها */
+const ROW_TO_ANCHOR: Record<string, string> = {
+  workspaces: "workspace",
+  views: "views",
+  ai: "ai",
+  chat: "chat",
+  dev: "mcp",
+  knowledge: "docs",
+};
+
 function FeatureDoodle({ id }: { id: string }) {
   const common = {
     fill: "none",
@@ -226,7 +236,7 @@ export function FeaturesIndex() {
             {FEATURE_ROWS.map((f, i) => (
               <Reveal key={f.id} delay={i * 90}>
                 <a
-                  href="#/features"
+                  href={`#/features?to=${ROW_TO_ANCHOR[f.id] ?? ""}`}
                   className="group relative block overflow-hidden rounded-2xl border-[1.5px] border-ink bg-paper shadow-[5px_5px_0_0_rgba(25,23,18,1)] hover:shadow-[8px_8px_0_0_rgba(244,71,31,1)] hover:-translate-y-1 transition-all duration-300"
                 >
                   <span aria-hidden className="absolute inset-0 bg-amber translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.19,0.65,0.22,1)]" />

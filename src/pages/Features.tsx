@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Reveal, faNum, usePrefersReducedMotion } from "../lib/motion";
 import { PageShell, Sheet, Sticker, usePageMeta } from "../components/PageShell";
 import { IconArrow, IconBolt, IconCheck } from "../components/Icons";
@@ -486,6 +487,21 @@ export default function Features() {
     "ویژگی‌های فینولو | فینولو",
     "همهٔ قابلیت‌های فینولو در یک نگاه: ورک‌اسپیس متعدد، ۵ نمای کانبان/لیست/گراف/تایم‌لاین/درختی، تیم‌سازی، MCP، پرامپت AI، چت‌روم، دانش، هشدار بلادرنگ و CI/CD."
   );
+
+  /* دیپ‌لینک از صفحهٔ اول: #/features?to=ai → اسکرول به همان بخش + هایلایت کوتاه */
+  const [searchParams] = useSearchParams();
+  const deepLink = searchParams.get("to");
+  useEffect(() => {
+    if (!deepLink) return;
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(deepLink);
+      if (!el) return;
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      el.classList.add("flash-target");
+      window.setTimeout(() => el.classList.remove("flash-target"), 1800);
+    }, 280);
+    return () => window.clearTimeout(t);
+  }, [deepLink]);
 
   const jump = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 
