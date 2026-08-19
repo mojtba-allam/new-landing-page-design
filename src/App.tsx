@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { HashRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { I18nProvider } from "./lib/i18n";
+import { ThemeProvider, ThemeSwitch } from "./lib/theme";
 import { Ambient, Footer, Nav } from "./components/Chrome";
 import Hero from "./components/Hero";
 import { FeaturesIndex, GanttSection } from "./components/Showcase";
@@ -69,10 +70,12 @@ function AnchorRedirect() {
 export default function App() {
   return (
     <I18nProvider>
-      <HashRouter>
-        <ScrollToTop />
-        <Ambient />
-        <Routes>
+      <ThemeProvider>
+        <HashRouter>
+          <ScrollToTop />
+          <Ambient />
+          <ThemeSwitch />
+          <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -86,8 +89,9 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/features" element={<Features />} />
         <Route path="*" element={<AnchorRedirect />} />
-        </Routes>
-      </HashRouter>
+          </Routes>
+        </HashRouter>
+      </ThemeProvider>
     </I18nProvider>
   );
 }

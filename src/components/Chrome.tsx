@@ -9,7 +9,7 @@ export function Ambient() {
   return (
     <>
       <div className="noise-overlay" aria-hidden />
-      <div className="fixed inset-0 -z-10 pointer-events-none" aria-hidden>
+      <div id="ambient-bg" className="fixed inset-0 -z-10 pointer-events-none" aria-hidden>
         <div className="absolute inset-0 bg-grid-faint" />
         <svg className="absolute -top-20 -left-20 w-96 h-96 text-ink/8 spin-slow" viewBox="0 0 100 100" fill="none" stroke="currentColor">
           <circle cx="50" cy="50" r="48" strokeWidth="0.6" strokeDasharray="4 6" />

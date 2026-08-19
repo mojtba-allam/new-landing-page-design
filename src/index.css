@@ -467,6 +467,194 @@ button {
   .msg-in, .task-in { animation: none; opacity: 1; transform: none; }
 }
 
+/* ================================================================
+   THEME: glass — Apple HIG / Liquid Glass redesign (comparison theme)
+   Content stays solid; glass is reserved for chrome & overlays.
+   ================================================================ */
+html[data-theme="glass"] {
+  --color-paper: #f5f5f7;
+  --color-paper-deep: #e9e9ee;
+  --color-ink: #1d1d1f;
+  --color-ink-soft: #6e6e73;
+  --color-line: rgba(0, 0, 0, 0.12);
+  --color-pine: #17171c;
+  --color-pine-deep: #101014;
+  --color-pine-soft: #2c2c2e;
+  --color-verm: #2d7aff;
+  --color-verm-deep: #0460ff;
+  --color-amber: #dbe7fd;
+  --color-sage: #e9e0ff;
+  --color-sky-soft: #e8f0fe;
+
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Vazirmatn, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", Vazirmatn, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  --ds-shadow-low: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 0.5px rgba(0, 0, 0, 0.05);
+  --ds-shadow-med: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 0.5px rgba(0, 0, 0, 0.06);
+  --ds-shadow-high: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 0 0.5px rgba(0, 0, 0, 0.07);
+  --ds-shadow-overlay: 0 16px 48px rgba(0, 0, 0, 0.18), 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+
+  color-scheme: light;
+}
+
+/* type: SF semantics — bold (not extrabold), tight tracking */
+html[data-theme="glass"] .font-display {
+  font-weight: 700;
+  letter-spacing: -0.022em;
+}
+html[lang="en"][data-theme="glass"] .font-display {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+html[data-theme="glass"] body {
+  line-height: 1.5;
+}
+
+/* ambient canvas: layered radial glows so frost has tint to sample */
+html[data-theme="glass"] body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, rgba(45, 122, 255, 0.22), transparent 62%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgba(130, 112, 219, 0.17), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 82%, rgba(34, 160, 107, 0.15), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(226, 129, 26, 0.1), transparent 60%),
+    #f5f5f7;
+}
+/* the paper-theme ambient (grid + drifting glyphs + noise) is off */
+html[data-theme="glass"] #ambient-bg,
+html[data-theme="glass"] .noise-overlay {
+  display: none;
+}
+html[data-theme="glass"] .bg-grid-faint,
+html[data-theme="glass"] .bg-grid-dark {
+  background-image: none;
+}
+
+/* ---------- elevation: hard offset shadows → soft Apple shadows ---------- */
+html[data-theme="glass"] [class*="shadow-["] {
+  box-shadow: var(--ds-shadow-med);
+}
+html[data-theme="glass"] [class*="hover:shadow-["]:hover {
+  box-shadow: var(--ds-shadow-high);
+}
+html[data-theme="glass"] [class*="active:shadow-["]:active {
+  box-shadow: var(--ds-shadow-low);
+}
+html[data-theme="glass"] .card-tilt:hover {
+  box-shadow: var(--ds-shadow-high);
+}
+
+/* ---------- hairlines instead of 1.5–2px ink borders ---------- */
+html[data-theme="glass"] [class*="border-["] {
+  border-width: 1px;
+}
+html[data-theme="glass"] .border-2 {
+  border-width: 1px;
+}
+html[data-theme="glass"] .border-ink {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+html[data-theme="glass"] .divide-ink\/12,
+html[data-theme="glass"] .divide-ink\/15 {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- calm: no tilt, no wobble, no drift ---------- */
+html[data-theme="glass"] .-rotate-1,
+html[data-theme="glass"] .-rotate-2,
+html[data-theme="glass"] .-rotate-3,
+html[data-theme="glass"] .rotate-1,
+html[data-theme="glass"] .rotate-2,
+html[data-theme="glass"] .rotate-3,
+html[data-theme="glass"] .rotate-6,
+html[data-theme="glass"] .-rotate-6,
+html[data-theme="glass"] .rotate-12,
+html[data-theme="glass"] [class*="rotate-[-1.5deg]"],
+html[data-theme="glass"] [class*="rotate-[-4deg]"],
+html[data-theme="glass"] [class*="rotate-[3deg]"],
+html[data-theme="glass"] [class*="rotate-[-8deg]"],
+html[data-theme="glass"] [class*="rotate-[-9deg]"] {
+  transform: none;
+}
+html[data-theme="glass"] .drift,
+html[data-theme="glass"] .drift-slow,
+html[data-theme="glass"] .wiggle {
+  animation: none;
+}
+html[data-theme="glass"] .kanban-card.dragging {
+  transform: scale(0.98);
+}
+
+/* ---------- glass, only on chrome & overlays ---------- */
+html[data-theme="glass"] header.fixed {
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
+  backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
+}
+/* fullscreen mobile menu → thick dark glass */
+html[data-theme="glass"] .menu-fade {
+  background: rgba(10, 10, 12, 0.55);
+  -webkit-backdrop-filter: blur(40px) saturate(1.8);
+  backdrop-filter: blur(40px) saturate(1.8);
+}
+
+/* ---------- accent touch-ups ---------- */
+html[data-theme="glass"] :focus-visible {
+  outline-color: #2d7aff;
+}
+html[data-theme="glass"] .drop-col.over {
+  background: rgba(45, 122, 255, 0.06);
+}
+@keyframes flash-ring-blue {
+  0% { box-shadow: 0 0 0 0 rgba(45, 122, 255, 0); }
+  25% { box-shadow: 0 0 0 6px rgba(45, 122, 255, 0.35); }
+  100% { box-shadow: 0 0 0 6px rgba(45, 122, 255, 0); }
+}
+html[data-theme="glass"] .flash-target {
+  animation-name: flash-ring-blue;
+}
+
+/* reduced transparency → solid chrome, no blur */
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme="glass"] header.fixed {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(245, 245, 247, 0.97);
+  }
+  html[data-theme="glass"] .menu-fade {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #0a0a0c;
+  }
+}
+
+/* smooth cross-fade while switching themes */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-morph,
+  html.theme-morph *,
+  html.theme-morph *::before,
+  html.theme-morph *::after {
+    transition:
+      background-color 0.6s ease,
+      color 0.6s ease,
+      border-color 0.6s ease,
+      fill 0.6s ease,
+      stroke 0.6s ease,
+      box-shadow 0.6s ease !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.theme-morph,
+  html.theme-morph *,
+  html.theme-morph *::before,
+  html.theme-morph *::after {
+    transition: none !important;
+  }
+}
+
 
 
 
