@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { HashRouter, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Ambient, Footer, Nav } from "./components/Chrome";
 import Hero from "./components/Hero";
-import { GanttSection } from "./components/Showcase";
+import { FeaturesIndex, GanttSection } from "./components/Showcase";
 import { CtaBand, Faq, Pricing, StatsBand, Testimonials } from "./components/Social";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -22,6 +22,7 @@ function HomePage() {
       <main>
         <Hero />
         <GanttSection />
+        <FeaturesIndex />
         <StatsBand />
         <Testimonials />
         <Pricing />

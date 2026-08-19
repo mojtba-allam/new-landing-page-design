@@ -300,7 +300,7 @@ export function Testimonials() {
     <section id="testimonials" className="relative py-24 sm:py-32 scroll-mt-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <SectionHead
-          index="۰۲"
+          index="۰۳"
           title={
             <>
               تیم‌ها <span className="text-verm">چی می‌گویند؟</span>
@@ -402,7 +402,7 @@ export function Pricing() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <SectionHead
-            index="۰۳"
+            index="۰۴"
             title={
               <>
                 قیمت، <span className="text-verm">شفاف مثل خودِ تخته</span>
@@ -471,11 +471,10 @@ export function Faq() {
       <div className="mx-auto max-w-7xl px-5 lg:px-8 grid lg:grid-cols-[1fr_1.4fr] gap-14">
         <div>
           <SectionHead
-            index="۰۴"
-            title={
-              <>
-                سوال؟ <span className="text-verm">جواب، همین‌جا</span>
-              </>
+          index="۰۵"
+          title={
+            <>
+              سوال؟ <span className="text-verm">جواب، همین‌جا</span>              </>
             }
             desc="اگر جوابت اینجا نبود، تیم پشتیبانی ما در تلگرام، کمتر از ده دقیقه پاسخ می‌دهد — واقعاً."
           />
