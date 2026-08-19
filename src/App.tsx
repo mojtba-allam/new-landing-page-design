@@ -15,6 +15,7 @@ import Help from "./pages/Help";
 import Status from "./pages/Status";
 import Changelog from "./pages/Changelog";
 import PricingPage from "./pages/PricingPage";
+import DesignSystem from "./pages/DesignSystem";
 import Features from "./pages/Features";
 
 function HomePage() {
@@ -88,6 +89,7 @@ export default function App() {
         <Route path="/changelog" element={<Changelog />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/features" element={<Features />} />
+        <Route path="/design-system" element={<DesignSystem />} />
         <Route path="*" element={<AnchorRedirect />} />
           </Routes>
         </HashRouter>

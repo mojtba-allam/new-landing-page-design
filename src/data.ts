@@ -203,6 +203,7 @@ export const FOOTER_COLS: { title: Pair; links: { label: Pair; href: string }[] 
     title: { fa: "منابع", en: "Resources" },
     links: [
       { label: { fa: "مرکز راهنما", en: "Help center" }, href: "#/help" },
+      { label: { fa: "سیستم دیزاین", en: "Design system" }, href: "#/design-system" },
       { label: { fa: "مستندات API", en: "API docs" }, href: "#/features" },
       { label: { fa: "وضعیت سرورها", en: "Server status" }, href: "#/status" },
       { label: { fa: "تغییرات نسخه‌ها", en: "Release notes" }, href: "#/changelog" },
