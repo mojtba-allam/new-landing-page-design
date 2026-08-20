@@ -17,6 +17,7 @@ import Changelog from "./pages/Changelog";
 import PricingPage from "./pages/PricingPage";
 import DesignSystem from "./pages/DesignSystem";
 import Features from "./pages/Features";
+import AppPrototype from "./pages/AppPrototype";
 
 function HomePage() {
   return (
@@ -90,6 +91,7 @@ export default function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/features" element={<Features />} />
         <Route path="/design-system" element={<DesignSystem />} />
+        <Route path="/app" element={<AppPrototype />} />
         <Route path="*" element={<AnchorRedirect />} />
           </Routes>
         </HashRouter>
