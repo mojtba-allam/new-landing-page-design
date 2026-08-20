@@ -7,7 +7,7 @@ import {
 
 /* ============================================================
    FINOLO — hi-fi interactive prototype (faithful to shipped IA)
-   Glass chrome · brand #2D7AFF · Toman · EN/FA
+   Paper & vermilion theme (تم کاهگی) · Toman · EN/FA
    ============================================================ */
 
 type Persona = "owner" | "member" | "observer" | "guest";

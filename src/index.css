@@ -872,114 +872,140 @@ html[data-theme="glass"][data-mode="dark"] :focus-visible {
   }
 }
 
-/* ================= FINOLO APP SHELL (glass chrome, brand #2D7AFF) =================
-   scoped re-skin: everything inside .appshell remaps to the product's Apple-style
-   blue identity, independent of the site's paper/vermilion theme. */
+/* ================= FINOLO APP SHELL — تم کاهگی و ورمیلیون =================
+   همهٔ صفحات پروتوتایپ داخل .appshell با زبان بصری سایت رندر می‌شوند:
+   کاغذ گرم، مرکاب، ورمیلیون، کهربا، سایه‌های آفست سخت و فونت یکان‌بخ. */
 .appshell {
-  --color-paper: #f2f3f7;
-  --color-paper-deep: #e9eaf0;
-  --color-ink: #1d1d1f;
-  --color-ink-soft: #6e6e73;
-  --color-line: rgba(0, 0, 0, 0.12);
-  --color-pine: #1c1c1e;
-  --color-pine-deep: #121214;
-  --color-pine-soft: #2c2c2e;
-  --color-verm: #2d7aff;
-  --color-verm-deep: #0460ff;
-  --color-amber: #ffd166;
-  --color-sage: #e6f4ec;
-  --color-sky-soft: #e8f0fe;
-  --app-ok: #22a06b;
-  --app-warn: #e2811a;
-  --app-danger: #c9372c;
+  --color-paper: #f5f2eb;
+  --color-paper-deep: #ece8dd;
+  --color-ink: #191712;
+  --color-ink-soft: #55503f;
+  --color-line: #ddd7c8;
+  --color-pine: #0f3b31;
+  --color-pine-deep: #0a2a23;
+  --color-pine-soft: #1c5244;
+  --color-verm: #f4471f;
+  --color-verm-deep: #c93312;
+  --color-amber: #ffc24b;
+  --color-sage: #dfe6d2;
+  --color-sky-soft: #d9e4e0;
+  --app-ok: #0f3b31;
+  --app-warn: #b97e08;
+  --app-danger: #c93312;
+  --app-brand: #f4471f;
+  --app-brand-soft: #fdeee9;
 }
 html[data-dark] .appshell {
-  --color-paper: #0a0a0c;
-  --color-paper-deep: #141416;
-  --color-ink: #f5f5f7;
-  --color-ink-soft: #98989d;
-  --color-line: rgba(255, 255, 255, 0.14);
-  --color-pine: #1c1c1e;
-  --color-pine-deep: #000000;
-  --color-pine-soft: #2c2c2e;
-  --color-verm: #5694ff;
-  --color-verm-deep: #7aaaff;
-  --color-amber: #ffd166;
-  --color-sage: #0d2318;
-  --color-sky-soft: #0d1f40;
+  --color-paper: #171310;
+  --color-paper-deep: #1f1a15;
+  --color-ink: #f0eadf;
+  --color-ink-soft: #a89e8d;
+  --color-line: rgba(240, 234, 223, 0.16);
+  --color-pine: #1c5244;
+  --color-pine-deep: #0a2a23;
+  --color-pine-soft: #276a58;
+  --color-verm: #ff6a45;
+  --color-verm-deep: #f4471f;
+  --color-amber: #ffc24b;
+  --color-sage: #22301f;
+  --color-sky-soft: #22303a;
+  --app-brand: #ff6a45;
+  --app-brand-soft: #3a221b;
 }
+/* بوم: کاغذ گرم + شبکهٔ کم‌رنگ به‌جای بلور */
 .app-ambient {
-  background:
-    radial-gradient(ellipse 80% 60% at 15% 18%, rgba(45, 122, 255, 0.22), transparent 62%),
-    radial-gradient(ellipse 70% 50% at 85% 22%, rgba(130, 112, 219, 0.17), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 85%, rgba(34, 160, 107, 0.15), transparent 62%),
-    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(252, 107, 92, 0.12), transparent 60%),
-    var(--color-paper);
+  background-color: var(--color-paper);
+  background-image: linear-gradient(to left, rgba(25, 23, 18, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(25, 23, 18, 0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
 }
 html[data-dark] .app-ambient {
-  background:
-    radial-gradient(ellipse 80% 60% at 15% 18%, rgba(86, 148, 255, 0.14), transparent 62%),
-    radial-gradient(ellipse 70% 50% at 85% 22%, rgba(167, 139, 250, 0.11), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 85%, rgba(48, 209, 88, 0.09), transparent 62%),
-    radial-gradient(ellipse 60% 50% at 78% 92%, rgba(255, 159, 10, 0.07), transparent 60%),
-    var(--color-paper);
+  background-image: linear-gradient(to left, rgba(240, 234, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(240, 234, 223, 0.05) 1px, transparent 1px);
 }
-/* functional layer glass: sidebar / header / nav */
-.glass {
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
-  backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+/* کروم (هدر/سایدبار): کاغذِ قاطع با مرز مرکابی و سایهٔ آفست */
+.appshell .glass {
+  background: color-mix(in srgb, var(--color-paper) 94%, transparent);
+  border: 1.5px solid var(--color-ink);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 3px 0 0 rgba(25, 23, 18, 0.85);
 }
-html[data-dark] .glass {
-  background: rgba(28, 28, 30, 0.35);
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+html[data-dark] .appshell .glass {
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.6);
 }
-/* overlay layer: thicker glass for modals / popovers / drawers */
-.glass-heavy {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  -webkit-backdrop-filter: blur(40px) saturate(1.8);
-  backdrop-filter: blur(40px) saturate(1.8);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+/* اورلی‌ها (مودال/دراور): کارت کاغذی با سایهٔ آفست بزرگ */
+.appshell .glass-heavy {
+  background: var(--color-paper);
+  border: 1.5px solid var(--color-ink);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 8px 8px 0 0 rgba(25, 23, 18, 0.9);
+  border-radius: 16px;
 }
-html[data-dark] .glass-heavy {
-  background: rgba(30, 30, 32, 0.92);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+html[data-dark] .appshell .glass-heavy {
+  box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.65);
 }
-/* content layer: solid surfaces, never glass */
-.app-surface {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+/* سطح محتوا: کارت‌های کاغذی */
+.appshell .app-surface {
+  background: var(--color-paper);
+  border: 1.5px solid color-mix(in srgb, var(--color-ink) 22%, transparent);
+  box-shadow: 4px 4px 0 0 rgba(25, 23, 18, 0.12);
+  border-radius: 14px;
 }
-html[data-dark] .app-surface {
-  background: rgba(28, 28, 30, 0.88);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 0 0.5px rgba(255, 255, 255, 0.05);
+html[data-dark] .appshell .app-surface {
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.4);
 }
-@media (prefers-reduced-transparency: reduce) {
-  .glass,
-  .glass-heavy {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
-  }
-  .glass {
-    background: rgba(242, 243, 247, 0.97);
-  }
-  .glass-heavy {
-    background: #ffffff;
-  }
-  html[data-dark] .glass {
-    background: rgba(20, 20, 22, 0.97);
-  }
-  html[data-dark] .glass-heavy {
-    background: #1e1e20;
-  }
+/* تایپوگرافی نمایشی کاهگی برای تیترها */
+.appshell h1,
+.appshell h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
+
+/* ---------- بازنشانی رنگ‌های برند قبلی به پالت کاهگی ----------
+   آبیِ هاردکدشده → ورمیلیون، سبز → سرو، خاکستری وضعیت → مرکاب نرم */
+.appshell [class*="bg-[#2d7aff]"] { background-color: var(--app-brand) !important; }
+.appshell [class*="text-[#2d7aff]"] { color: var(--app-brand) !important; }
+.appshell [class*="border-[#2d7aff]"] { border-color: var(--app-brand) !important; }
+.appshell [class*="accent-[#2d7aff]"] { accent-color: var(--app-brand) !important; }
+.appshell [class*="ring-[#2d7aff]"] { --tw-ring-color: var(--app-brand) !important; }
+.appshell [class*="hover:bg-[#0460ff]"]:hover { background-color: var(--color-verm-deep) !important; }
+.appshell [class*="hover:text-[#2d7aff]"]:hover { color: var(--app-brand) !important; }
+.appshell [class*="hover:border-[#2d7aff]"]:hover { border-color: var(--app-brand) !important; }
+.appshell [class*="focus:border-[#2d7aff]"]:focus { border-color: var(--app-brand) !important; }
+.appshell [class*="focus-visible:outline-[#2d7aff]"] { outline-color: var(--app-brand) !important; }
+.appshell [class*="bg-[#e8f0fe]"] { background-color: var(--app-brand-soft) !important; }
+.appshell [class*="hover:bg-[#dce7fd]"]:hover { background-color: color-mix(in srgb, var(--app-brand) 22%, var(--color-paper)) !important; }
+.appshell [class*="text-[#7aaaff]"],
+.appshell [class*="text-[#5694ff]"] { color: var(--app-brand) !important; }
+.appshell [class*="bg-[#1a2f5e]"] { background-color: var(--app-brand-soft) !important; }
+.appshell [class*="bg-[#0d1f40]"] { background-color: var(--app-brand-soft) !important; }
+.appshell [class*="bg-[#22a06b]"] { background-color: var(--app-ok) !important; }
+.appshell [class*="text-[#22a06b]"] { color: var(--app-ok) !important; }
+.appshell [class*="text-[#1f845a]"] { color: var(--app-ok) !important; }
+.appshell [class*="bg-[#e6f4ec]"] { background-color: var(--color-sage) !important; }
+.appshell [class*="text-[#974f0c]"] { color: var(--app-warn) !important; }
+.appshell [class*="bg-[#fffae6]"] { background-color: color-mix(in srgb, var(--color-amber) 25%, var(--color-paper)) !important; }
+.appshell [class*="bg-[#fff2f0]"] { background-color: color-mix(in srgb, var(--app-brand) 10%, var(--color-paper)) !important; }
+.appshell [class*="text-[#c9372c]"] { color: var(--app-danger) !important; }
+.appshell [class*="border-[#c9372c]"] { border-color: var(--app-danger) !important; }
+.appshell [class*="bg-[#c9372c]"] { background-color: var(--app-danger) !important; }
+.appshell [class*="text-[#e56910]"] { color: var(--app-warn) !important; }
+.appshell [class*="bg-[#e2811a]"] { background-color: var(--app-warn) !important; }
+.appshell [class*="bg-[#943d73]"] { background-color: color-mix(in srgb, var(--color-ink-soft) 75%, transparent) !important; }
+.appshell [class*="bg-[#8e8e93]"] { background-color: color-mix(in srgb, var(--color-ink-soft) 55%, transparent) !important; }
+.appshell [class*="bg-[#6554c0]"] { background-color: var(--color-pine-soft) !important; }
+/* کارت‌های سفید → کاغذ */
+.appshell .bg-white { background-color: var(--color-paper) !important; }
+html[data-dark] .appshell [class*="bg-[#2c2c2e]"] { background-color: var(--color-paper-deep) !important; }
+.appshell [class*="border-[#2d7aff]/40"] { border-color: color-mix(in srgb, var(--app-brand) 40%, transparent) !important; }
+.appshell [class*="bg-[#2d7aff]/5"] { background-color: color-mix(in srgb, var(--app-brand) 6%, transparent) !important; }
+/* SVGهای برند (نمودارها و گراف) */
+.appshell svg [stroke="#2d7aff"] { stroke: var(--app-brand) !important; }
+.appshell svg [fill="#2d7aff"] { fill: var(--app-brand) !important; }
+.appshell svg [fill="#e8f0fe"] { fill: var(--app-brand-soft) !important; }
 
 
 
